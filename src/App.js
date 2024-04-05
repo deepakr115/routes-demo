@@ -1,24 +1,35 @@
-import logo from './logo.svg';
 import './App.css';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import Dashboard from './Dashboard/Dashboard';
+import ErrorPage from './ErrorPage';
+import List from './List/List';
+import Favorites from './Favorites/Favorites';
+import { useState } from 'react';
 
 function App() {
+  // Common state to store the favorite images, Redux could be used for something more complicated.
+  const [favorites, setFavorites] = useState({});
+
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Dashboard favorites={favorites} />,
+      errorElement: <ErrorPage />,
+      children: [
+        {
+          path: "/",
+          element: <Favorites favorites={favorites} />
+        },
+        {
+          path: "list",
+          element: <List favorites={favorites} setFavorites={setFavorites} />
+        }
+      ]
+    },
+  ])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <RouterProvider router={router} />
   );
 }
 
