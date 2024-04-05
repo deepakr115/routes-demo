@@ -93,7 +93,7 @@ export default function List({ favorites, setFavorites }) {
         <div className={styles.list}>
             {photos.map((photo, index) => (
                 <div className="list-item" key={index}>
-                    <img src={photo?.url} alt='flag' width={200} />
+                    <img src={photo?.url} alt='picture' width={200} />
                     <span className="image-title">{photo?.title}</span>
                     <button
                         style={{ cursor: "pointer" }}
@@ -104,7 +104,7 @@ export default function List({ favorites, setFavorites }) {
                     </button>
                 </div>
             ))}
-            <div ref={loaderRef}>{isLoading && <div className={styles.spinner}></div>}</div>
+            <div data-testid="list-loading-spinner" ref={loaderRef}>{isLoading && <div className={styles.spinner}></div>}</div>
         </div>
     );
 }

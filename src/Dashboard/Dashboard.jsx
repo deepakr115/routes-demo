@@ -18,7 +18,7 @@ export default function Dashboard() {
                     </ul>
                 </nav>
             </div>
-            <div className={styles.detail}>
+            <div className={styles.detail} data-testid="dashboard-outlet-div">
                 <Outlet />
             </div>
         </>
