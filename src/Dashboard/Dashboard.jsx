@@ -1,6 +1,6 @@
 import { Link, Outlet } from "react-router-dom";
 
-import styles from "./Dashboard.module.css";
+import styles from "./Dashboard.module.scss";
 
 export default function Dashboard() {
     return (

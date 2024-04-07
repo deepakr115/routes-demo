@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState, useRef, useCallback } from "react";
 
-import styles from "./List.module.css";
+import styles from "./List.module.scss";
 
 export default function List({ favorites, setFavorites }) {
     const API_URL = "https://jsonplaceholder.typicode.com/albums/1/photos?_limit=10";
