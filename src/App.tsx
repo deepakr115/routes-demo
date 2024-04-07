@@ -1,19 +1,23 @@
+import React from "react";
+
 import './App.scss';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import Dashboard from './Dashboard/Dashboard';
-import ErrorPage from './ErrorPage';
-import List from './List/List';
-import Favorites from './Favorites/Favorites';
+import Dashboard from './Dashboard/Dashboard.tsx';
+import ErrorPage from './ErrorPage.jsx';
+import List from './List/List.tsx';
+import Favorites from './Favorites/Favorites.tsx';
 import { useState } from 'react';
+
+export type TFavorites = Record<string, string>;
 
 function App() {
   // Common state to store the favorite images, Redux could be used for something more complicated.
-  const [favorites, setFavorites] = useState({});
+  const [favorites, setFavorites] = useState<TFavorites>({});
 
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Dashboard favorites={favorites} />,
+      element: <Dashboard />,
       errorElement: <ErrorPage />,
       children: [
         {

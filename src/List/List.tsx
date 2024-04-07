@@ -1,12 +1,24 @@
+import React from "react";
+
 import axios from "axios";
 import { useEffect, useState, useRef, useCallback } from "react";
 
 import styles from "./List.module.scss";
 
+type TPhoto = {
+    albumId: number;
+    id: number;
+    title: string;
+    url: string;
+    thumbnailUrl: string;
+}
+
+type TPhotos = TPhoto[];
+
 export default function List({ favorites, setFavorites }) {
     const API_URL = "https://jsonplaceholder.typicode.com/albums/1/photos?_limit=10";
 
-    const [photos, setPhotos] = useState([]);
+    const [photos, setPhotos] = useState<TPhotos>([]);
     const [isLoading, setIsLoading] = useState(false);
     const [index, setIndex] = useState(1);
     const loaderRef = useRef(null);
@@ -91,7 +103,7 @@ export default function List({ favorites, setFavorites }) {
     // render the list of photos and the loading span text
     return (
         <div className={styles.list}>
-            {photos.map((photo, index) => (
+            {photos?.map((photo, index) => (
                 <div className="list-item" key={index}>
                     <img src={photo?.url} alt='picture' width={200} />
                     <span className="image-title">{photo?.title}</span>
